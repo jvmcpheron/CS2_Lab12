@@ -1,0 +1,19 @@
+I 10
+I 5
+I 15
+I 3
+I 7
+I 12
+I 18
+PF
+IN
+PRE
+POST
+T
+R 10
+PF
+IN
+PRE
+POST
+T
+Q

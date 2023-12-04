@@ -1,6 +1,90 @@
-//
-// Created by Richard Maclin on 11/9/23.
-//
+
+//Jane McPheron
+
+/*
+
+jvmcpheron@dyn-10-140-246-187 CS2_Lab12 % ./main  
+Read from file (Y/N)? Y
+Filename: commands.txt
+Inserting 10
+Inserting 5
+Inserting 15
+Inserting 3
+curr is 5
+Inserting 7
+curr is 5
+Inserting 12
+curr is 15
+Inserting 18
+curr is 15
+Print Flat:
+3 5 7 10 12 15 18 
+Print In Order:
+      18
+   15
+      12
+ 10
+      7
+   5
+      3
+
+Print PreOrder:
+ 10
+   15
+      18
+      12
+   5
+      7
+      3
+
+Print PostOrder:
+      18
+      12
+   15
+      7
+      3
+   5
+ 10
+
+Traverse:
+Pre 10 Pre 5 Pre 3 In 3 Post 3 In 5 Pre 7 In 7 Post 7 Post 5 In 10 Pre 15 Pre 12 In 12 Post 12 In 15 Pre 18 In 18 Post 18 Post 15 Post 10 Removing value 10
+Deleting node with data 12
+Successfully removed
+Print Flat:
+3 5 7 12 15 18 
+Print In Order:
+      18
+   15
+ 12
+      7
+   5
+      3
+
+Print PreOrder:
+ 12
+   15
+      18
+   5
+      7
+      3
+
+Print PostOrder:
+      18
+   15
+      7
+      3
+   5
+ 12
+
+Traverse:
+Pre 12 Pre 5 Pre 3 In 3 Post 3 In 5 Pre 7 In 7 Post 7 Post 5 In 12 Pre 15 In 15 Pre 18 In 18 Post 18 Post 15 Post 12 Deleting node with data 12
+Deleting node with data 15
+Deleting node with data 18
+Deleting node with data 5
+Deleting node with data 7
+Deleting node with data 3
+
+*/
 
 #include "BinaryTree.h"
 #include <fstream>
