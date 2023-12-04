@@ -3,15 +3,19 @@
 //
 
 #include "BinaryTree.h"
-#include <iostream>>
 #include <fstream>
 #include <iomanip>
-#include <memory>
 
 using namespace std;
 
+    //Destructor
+    BinaryNode::~BinaryNode() {
+        cout << "Deleting node with data " << data << "\n";
+    }
 
-    BinaryNode *doFind(int d, BinaryNode *curr) {
+
+    //CHANGING POINTERS TO SHARED POINTER
+    shared_ptr<BinaryNode>doFind(int d, shared_ptr<BinaryNode>curr) {
         if (curr == nullptr) {
             return nullptr;
         }
@@ -30,13 +34,15 @@ using namespace std;
         }
     }
 
-    BinaryNode *BinaryTree::find(int d) {
+    shared_ptr<BinaryNode> BinaryTree::find(int d) {
         return doFind(d,root);
     }
 
-    BinaryNode *doInsert(BinaryNode *curr, int d) {
+    shared_ptr<BinaryNode>doInsert(shared_ptr<BinaryNode>curr, int d) {
         if (curr == NULL) {
-            return new BinaryNode(d);
+
+            //change from new to make_shared
+            return make_shared<BinaryNode>(d);
         }
         cout << "curr is " << curr->getData() << endl;
         int cmp = curr->compare(d);
@@ -51,7 +57,7 @@ using namespace std;
 
     void BinaryTree::insert(int d) {
         if (root == nullptr) {
-            root = new BinaryNode(d);
+            root = make_shared<BinaryNode>(d);
             return;
         }
         int cmp = root->compare(d);
@@ -63,17 +69,15 @@ using namespace std;
         }
     }
 
-    BinaryNode *removeNextHighestValue(BinaryNode *curr, int &nextD) {
+    shared_ptr<BinaryNode>removeNextHighestValue(shared_ptr<BinaryNode>curr, int &nextD) {
         if (curr->getLeft() == nullptr) {
-            BinaryNode *discard = curr;
+            shared_ptr<BinaryNode>discard = curr;
             nextD = curr->getData();
             if (curr->getRight() == nullptr) {
-                delete discard;
                 return nullptr;
             }
             else {
-                BinaryNode *rightC = curr->getRight();
-                delete discard;
+                shared_ptr<BinaryNode>rightC = curr->getRight();
                 return rightC;
             }
         }
@@ -83,7 +87,7 @@ using namespace std;
         }
     }
 
-    BinaryNode *doRemove(BinaryNode *curr, int d, bool &found) {
+    shared_ptr<BinaryNode>doRemove(shared_ptr<BinaryNode>curr, int d, bool &found) {
         if (curr == nullptr) {
             return nullptr;
         }
@@ -92,19 +96,16 @@ using namespace std;
             found = true;
             if (curr->getLeft() == nullptr) {
                 if (curr->getRight() == nullptr) {
-                    delete curr;
                     return nullptr;
                 }
                 else {
-                    BinaryNode *rightC = curr->getRight();
-                    delete curr;
+                    shared_ptr<BinaryNode>rightC = curr->getRight();
                     return rightC;
                 }
             }
             else {
                 if (curr->getRight() == nullptr) {
-                    BinaryNode *leftC = curr->getLeft();
-                    delete curr;
+                    shared_ptr<BinaryNode>leftC = curr->getLeft();
                     return leftC;
                 }
                 else {
@@ -193,7 +194,7 @@ using namespace std;
 
 
 
-void traverse(BinaryNode *n, ostream &out) {
+void traverse(shared_ptr<BinaryNode>n, ostream &out) {
     if (n != nullptr) {
         out << "Pre " << n->getData() << " ";
         traverse(n->getLeft(), out);
